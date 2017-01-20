@@ -251,6 +251,14 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Multiplies Maxel 'a' by integer 'b'
+    ///</summary>
+    public static Maxel operator ^(int b, Maxel a)
+    {
+      return a ^ b;
+    }
+
+    ///<summary>
     /// Shifts Maxel 'a' up the diagonal by 'k' steps
     ///</summary>
     public static Maxel operator <<(Maxel a, int k)
