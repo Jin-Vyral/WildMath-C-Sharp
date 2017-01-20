@@ -185,6 +185,57 @@ namespace WildMath
       return max;
     }
 
+    public override bool Equals(object obj)
+    {
+      if((obj != null) && (obj is Maxel))
+        return this.Equals(obj as Maxel);
+
+      return false;
+    }
+
+    public bool Equals(Maxel other)
+    {
+      foreach(KeyValuePair<Pixel, int> elem in elements)
+      {
+        int bcnt = 0;
+        if(!other.elements.TryGetValue(elem.Key, out bcnt) || (bcnt != elem.Value))
+          return false;
+      }
+
+      foreach(KeyValuePair<Pixel, int> elem in other.elements)
+      {
+        int acnt = 0;
+        if(!elements.TryGetValue(elem.Key, out acnt) || (acnt != elem.Value))
+          return false;
+      }
+
+      return true;
+    }
+
+    public static bool operator ==(Maxel a, Maxel b)
+    {
+      if(ReferenceEquals(a, null))
+      {
+        if(ReferenceEquals(b, null))
+          return true;
+
+        return false;
+      }
+
+      return a.Equals(b);
+    }
+
+    public static bool operator !=(Maxel a, Maxel b)
+    {
+      return !(a == b);
+    }
+
+    public override int GetHashCode()
+    {
+      // any ideas for a good hash are welcome
+      return base.GetHashCode();
+    }
+
     public Pixel Extent
     {
       get
