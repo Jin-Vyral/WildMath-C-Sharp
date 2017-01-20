@@ -185,6 +185,22 @@ namespace WildMath
       return max;
     }
 
+    public static Maxel operator ^(Maxel a, Maxel b)
+    {
+      Maxel mul = new Maxel();
+
+      foreach(KeyValuePair<Pixel, int> ae in a.elements)
+      {
+        foreach(KeyValuePair<Pixel, int> be in b.elements)
+        {
+          if(ae.Key.Y == be.Key.X)
+            mul.AddElement(new Pixel(ae.Key.X, be.Key.Y), ae.Value * be.Value);
+        }
+      }
+
+      return mul;
+    }
+
     public override bool Equals(object obj)
     {
       if((obj != null) && (obj is Maxel))
