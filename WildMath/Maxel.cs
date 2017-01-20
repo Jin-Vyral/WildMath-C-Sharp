@@ -99,7 +99,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Adds Maxel b to Maxel a
+    /// Adds Maxel 'b' to Maxel 'a'
     ///</summary>
     public static Maxel operator *(Maxel a, Maxel b)
     {
@@ -127,7 +127,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Subtracts Maxel b from Maxel a
+    /// Subtracts Maxel 'b' from Maxel 'a'
     ///</summary>
     public static Maxel operator /(Maxel a, Maxel b)
     {
@@ -155,7 +155,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Returns the intersection of Maxels a and b
+    /// Returns the intersection of Maxels 'a' and 'b'
     ///</summary>
     public static Maxel operator -(Maxel a, Maxel b)
     {
@@ -187,7 +187,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Returns the union of Maxels a and b
+    /// Returns the union of Maxels 'a' and 'b'
     ///</summary>
     public static Maxel operator +(Maxel a, Maxel b)
     {
@@ -219,7 +219,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Multiplies Maxel a by Maxel b
+    /// Multiplies Maxel 'a' by Maxel 'b'
     ///</summary>
     public static Maxel operator ^(Maxel a, Maxel b)
     {
@@ -238,7 +238,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Shifts Maxel a up the diagonal by k steps
+    /// Shifts Maxel 'a' up the diagonal by 'k' steps
     ///</summary>
     public static Maxel operator <<(Maxel a, int k)
     {
@@ -251,7 +251,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Shifts Maxel a down the diagonal by k steps
+    /// Shifts Maxel 'a' down the diagonal by 'k' steps
     ///</summary>
     public static Maxel operator >>(Maxel a, int k)
     {
@@ -275,7 +275,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Tests for equality with Maxel other
+    /// Tests for equality with Maxel 'other'
     ///</summary>
     public bool Equals(Maxel other)
     {
@@ -297,7 +297,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Tests for equality between Maxels a and b
+    /// Tests for equality between Maxels 'a' and 'b'
     ///</summary>
     public static bool operator ==(Maxel a, Maxel b)
     {
@@ -313,7 +313,7 @@ namespace WildMath
     }
 
     ///<summary>
-    /// Tests for inequality between Maxels a and b
+    /// Tests for inequality between Maxels 'a' and 'b'
     ///</summary>
     public static bool operator !=(Maxel a, Maxel b)
     {
@@ -325,7 +325,8 @@ namespace WildMath
     ///</summary>
     public override int GetHashCode()
     {
-      // any ideas for a good hash are welcome
+      // Any ideas for a good hash are welcome
+      // For now this is just here to get it to compile
       return base.GetHashCode();
     }
 
