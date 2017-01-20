@@ -238,6 +238,19 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Multiplies Maxel 'a' by integer 'b'
+    ///</summary>
+    public static Maxel operator ^(Maxel a, int b)
+    {
+      Maxel mul = new Maxel();
+
+      foreach(KeyValuePair<Pixel, int> elem in a.elements)
+        mul.AddElement(elem.Key, elem.Value * b);
+
+      return mul;
+    }
+
+    ///<summary>
     /// Shifts Maxel 'a' up the diagonal by 'k' steps
     ///</summary>
     public static Maxel operator <<(Maxel a, int k)
