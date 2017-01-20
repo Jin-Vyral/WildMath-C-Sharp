@@ -197,7 +197,7 @@ namespace WildMath
       foreach(KeyValuePair<TYPE, int> elem in elements)
         str += elem.Key + "[" + elem.Value + "] ";
 
-      return str + " }";
+      return str + "}";
     }
 
     protected Dictionary<TYPE, int> elements;

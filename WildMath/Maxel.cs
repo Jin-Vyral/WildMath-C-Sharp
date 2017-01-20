@@ -238,6 +238,32 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Shifts Maxel a up the diagonal by k steps
+    ///</summary>
+    public static Maxel operator <<(Maxel a, int k)
+    {
+      Maxel shift = new Maxel();
+
+      foreach(KeyValuePair<Pixel, int> elem in a.elements)
+        shift.elements.Add(new Pixel(elem.Key.X + k, elem.Key.Y + k), elem.Value);
+
+      return shift;
+    }
+
+    ///<summary>
+    /// Shifts Maxel a down the diagonal by k steps
+    ///</summary>
+    public static Maxel operator >>(Maxel a, int k)
+    {
+      Maxel shift = new Maxel();
+
+      foreach(KeyValuePair<Pixel, int> elem in a.elements)
+        shift.elements.Add(new Pixel(elem.Key.X - k, elem.Key.Y - k), elem.Value);
+
+      return shift;
+    }
+
+    ///<summary>
     /// Implements C# generic Equals method
     ///</summary>
     public override bool Equals(object obj)
@@ -412,7 +438,7 @@ namespace WildMath
       foreach(KeyValuePair<Pixel, int> elem in elements)
         str += elem.Key + "[" + elem.Value + "] ";
 
-      return str + " }";
+      return str + "}";
     }
 
     ///<summary>

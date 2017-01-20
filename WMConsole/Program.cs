@@ -61,11 +61,13 @@ namespace WMConsole
 
       Maxel Y = new Maxel(new Pixel[] { new Pixel(1, 1), new Pixel(3, 3), new Pixel(4, 4), new Pixel(4, 4) });
 
-      Maxel Z = X * Y; // addition
-      Maxel W = X / Y; // subtraction
-      Maxel V = X + Y; // union
-      Maxel U = X - Y; // intersection
-      Maxel T = X ^ Y; // multiplication
+      Maxel Z = X * Y;  // addition
+      Maxel W = X / Y;  // subtraction
+      Maxel V = X + Y;  // union
+      Maxel U = X - Y;  // intersection
+      Maxel T = X ^ Y;  // multiplication
+      Maxel A = X >> 1; // shift down
+      Maxel B = X << 1; // shift up
 
       Console.WriteLine();
       Console.WriteLine("X = " + X);
@@ -75,6 +77,8 @@ namespace WMConsole
       Console.WriteLine("X + Y = " + V);
       Console.WriteLine("X - Y = " + U);
       Console.WriteLine("X ^ Y = " + T);
+      Console.WriteLine("X >> 1 = " + A);
+      Console.WriteLine("X << 1 = " + B);
 
       Finish();
     }
