@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WildMath
 {
+  ///<summary>
+  /// The Maxel class
+  ///</summary>
   public class Maxel
   {
     public Maxel()
@@ -13,6 +16,9 @@ namespace WildMath
       elements = new Dictionary<Pixel, int>();
     }
 
+    ///<summary>
+    /// Creates a Maxel with a given set of Pixels to add
+    ///</summary>
     public Maxel(Pixel[] elements)
     {
       this.elements = new Dictionary<Pixel, int>(elements.Length);
@@ -21,6 +27,9 @@ namespace WildMath
         AddElement(elem);
     }
 
+    ///<summary>
+    /// Creates a Maxel with given sets of Pixels to add and subtract
+    ///</summary>
     public Maxel(Pixel[] positiveElements, Pixel[] negativeElements)
     {
       this.elements = new Dictionary<Pixel, int>();
@@ -32,8 +41,14 @@ namespace WildMath
         SubtractElement(elem);
     }
 
+    ///<summary>
+    /// The total number of unique pixels in the Maxel
+    ///</summary>
     public int Size { get { return elements.Count; } }
 
+    ///<summary>
+    /// Adds an individual Pixel to the Maxel [count] times
+    ///</summary>
     public void AddElement(Pixel item, int count = 1)
     {
       if(count == 0)
@@ -53,6 +68,9 @@ namespace WildMath
         elements.Add(item, count);
     }
 
+    ///<summary>
+    /// Subtracts an individual Pixel from the Maxel [count] times
+    ///</summary>
     public void SubtractElement(Pixel item, int count = 1)
     {
       if(count == 0)
@@ -72,11 +90,17 @@ namespace WildMath
         elements.Add(item, -count);
     }
 
+    ///<summary>
+    /// Zeroes-out the Maxel (removes all Pixels)
+    ///</summary>
     public void ClearElements()
     {
       elements.Clear();
     }
 
+    ///<summary>
+    /// Adds Maxel b to Maxel a
+    ///</summary>
     public static Maxel operator *(Maxel a, Maxel b)
     {
       Maxel sum = new Maxel();
@@ -102,6 +126,9 @@ namespace WildMath
       return sum;
     }
 
+    ///<summary>
+    /// Subtracts Maxel b from Maxel a
+    ///</summary>
     public static Maxel operator /(Maxel a, Maxel b)
     {
       Maxel diff = new Maxel();
@@ -127,6 +154,9 @@ namespace WildMath
       return diff;
     }
 
+    ///<summary>
+    /// Returns the intersection of Maxels a and b
+    ///</summary>
     public static Maxel operator -(Maxel a, Maxel b)
     {
       Maxel min = new Maxel();
@@ -156,6 +186,9 @@ namespace WildMath
       return min;
     }
 
+    ///<summary>
+    /// Returns the union of Maxels a and b
+    ///</summary>
     public static Maxel operator +(Maxel a, Maxel b)
     {
       Maxel max = new Maxel();
@@ -185,6 +218,9 @@ namespace WildMath
       return max;
     }
 
+    ///<summary>
+    /// Multiplies Maxel a by Maxel b
+    ///</summary>
     public static Maxel operator ^(Maxel a, Maxel b)
     {
       Maxel mul = new Maxel();
@@ -201,6 +237,9 @@ namespace WildMath
       return mul;
     }
 
+    ///<summary>
+    /// Implements C# generic Equals method
+    ///</summary>
     public override bool Equals(object obj)
     {
       if((obj != null) && (obj is Maxel))
@@ -209,6 +248,9 @@ namespace WildMath
       return false;
     }
 
+    ///<summary>
+    /// Tests for equality with Maxel other
+    ///</summary>
     public bool Equals(Maxel other)
     {
       foreach(KeyValuePair<Pixel, int> elem in elements)
@@ -228,6 +270,9 @@ namespace WildMath
       return true;
     }
 
+    ///<summary>
+    /// Tests for equality between Maxels a and b
+    ///</summary>
     public static bool operator ==(Maxel a, Maxel b)
     {
       if(ReferenceEquals(a, null))
@@ -241,17 +286,26 @@ namespace WildMath
       return a.Equals(b);
     }
 
+    ///<summary>
+    /// Tests for inequality between Maxels a and b
+    ///</summary>
     public static bool operator !=(Maxel a, Maxel b)
     {
       return !(a == b);
     }
 
+    ///<summary>
+    /// Returns default hash code
+    ///</summary>
     public override int GetHashCode()
     {
       // any ideas for a good hash are welcome
       return base.GetHashCode();
     }
 
+    ///<summary>
+    /// The extent of the Maxel
+    ///</summary>
     public Pixel Extent
     {
       get
@@ -279,6 +333,9 @@ namespace WildMath
       }
     }
 
+    ///<summary>
+    /// Is the Maxel diagonal?
+    ///</summary>
     public bool IsDiagonal
     {
       get
@@ -295,6 +352,9 @@ namespace WildMath
       }
     }
 
+    ///<summary>
+    /// Transposes the Maxel
+    ///</summary>
     public Maxel Transpose()
     {
       Maxel trans = new Maxel();
@@ -305,6 +365,9 @@ namespace WildMath
       return trans;
     }
 
+    ///<summary>
+    /// Is the Maxel symmetric?
+    ///</summary>
     public bool IsSymmetric
     {
       get
@@ -326,13 +389,22 @@ namespace WildMath
       }
     }
 
+    ///<summary>
+    /// Is the Maxel zero?
+    ///</summary>
     public bool IsZero()
     {
       return elements.Count == 0; 
     }
 
+    ///<summary>
+    /// The Zero Maxel
+    ///</summary>
     public static Maxel Zero { get { return new Maxel(); } }
 
+    ///<summary>
+    /// Converts the Maxel into a more readable form
+    ///</summary>
     public override string ToString()
     {
       string str = "{ ";
@@ -343,6 +415,9 @@ namespace WildMath
       return str + " }";
     }
 
+    ///<summary>
+    /// The dictionary of Pixels and their associated multiplicities
+    ///</summary>
     protected Dictionary<Pixel, int> elements;
   }
 }
