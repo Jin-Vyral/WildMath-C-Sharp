@@ -408,6 +408,23 @@ namespace WildMath
     }
 
     ///<summary>
+    /// The support of the Maxel
+    ///</summary>
+    public Pixel[] Support
+    {
+      get
+      {
+        Pixel[] pix = new Pixel[elements.Count];
+        int i = 0;
+
+        foreach(KeyValuePair<Pixel, int> elem in elements)
+          pix[i++] = elem.Key;
+
+        return pix;
+      }
+    }
+
+    ///<summary>
     /// Is the Maxel diagonal?
     ///</summary>
     public bool IsDiagonal
