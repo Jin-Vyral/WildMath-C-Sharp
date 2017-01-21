@@ -16,9 +16,11 @@ namespace WMConsole
 {
   class Program
   {
-    static int maxCount = 200;
+    static int maxElements = 7;
     static int minValue = -5;
     static int maxValue = 5;
+    static int minCount = -5;
+    static int maxCount = 5;
     static Random rand = new Random();
 
     static void Main(string[] args)
@@ -33,10 +35,10 @@ namespace WMConsole
       {
         while(true)
         {
-          Maxel a = GenerateRandomMaxel(maxCount, minValue, maxValue);
-          Maxel b = GenerateRandomMaxel(maxCount, minValue, maxValue);
-          Maxel c = GenerateRandomMaxel(maxCount, minValue, maxValue);
-          Maxel d = GenerateRandomMaxel(maxCount, minValue, maxValue);
+          Maxel a = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
+          Maxel b = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
+          Maxel c = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
+          Maxel d = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
 
           // verify the math operations
 
@@ -205,17 +207,15 @@ namespace WMConsole
       Finish();
     }
 
-    private static Maxel GenerateRandomMaxel(int maxCount, int minValue, int maxValue)
+    private static Maxel GenerateRandomMaxel(int maxElements, int minValue, int maxValue, int minCount, int maxCount)
     {
-      Pixel[] pos = new Pixel[rand.Next(maxCount + 1)];
-      for(int i = 0;i < pos.Length;i++)
-        pos[i] = new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue));
+      Maxel m = new Maxel();
+      int elementCount = rand.Next(maxElements + 1);
 
-      Pixel[] neg = new Pixel[rand.Next((maxCount - pos.Length) + 1)];
-      for(int i = 0;i < neg.Length;i++)
-        neg[i] = new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue));
+      for(int i = 0;i < elementCount;i++)
+        m.AddElement(new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue)), rand.Next(minCount, maxCount));
 
-      return new Maxel(pos, neg);
+      return m;
     }
 
     private static void PrintGreeting()
