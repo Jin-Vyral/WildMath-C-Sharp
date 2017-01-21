@@ -99,6 +99,30 @@ namespace WMConsole
             break;
           }
 
+          if(a != ~(~a))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a / b != a * (~b))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if((a * c) / (b * c) != a / b)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a - b != a * b / (a + b))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
           if(++testsRun % 1000 == 0)
           {
             if(testsRun % 10000 == 0)
@@ -111,6 +135,7 @@ namespace WMConsole
         if(Console.ReadKey().Key == ConsoleKey.Enter)
           break;
 
+        Console.WriteLine();
         Console.WriteLine("Paused. Press Enter to exit, any other key to resume...");
 
         if(Console.ReadKey().Key == ConsoleKey.Enter)
