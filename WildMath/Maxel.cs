@@ -42,9 +42,25 @@ namespace WildMath
     }
 
     ///<summary>
-    /// The total number of unique pixels in the Maxel
+    /// The number of unique pixels in the Maxel
     ///</summary>
-    public int Size { get { return elements.Count; } }
+    public int Count { get { return elements.Count; } }
+
+    ///<summary>
+    /// The total number of pixels in the Maxel
+    ///</summary>
+    public int Size
+    {
+      get
+      {
+        int size = 0;
+
+        foreach(KeyValuePair<Pixel, int> elem in elements)
+          size += Math.Abs(elem.Value);
+
+        return size;
+      }
+    }
 
     ///<summary>
     /// Adds an individual Pixel to the Maxel [count] times
