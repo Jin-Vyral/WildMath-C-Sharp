@@ -9,16 +9,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using WildMath;
 
 namespace WMConsole
 {
   class Program
   {
-    static int maxCount = 10;
-    static int minValue = -10;
-    static int maxValue = 10;
+    static int maxCount = 200;
+    static int minValue = -5;
+    static int maxValue = 5;
     static Random rand = new Random();
 
     static void Main(string[] args)
@@ -29,9 +29,9 @@ namespace WMConsole
 
       int testsRun = 0;
 
-      do
+      while(true)
       {
-        while(!Console.KeyAvailable)
+        while(true)
         {
           Maxel a = GenerateRandomMaxel(maxCount, minValue, maxValue);
           Maxel b = GenerateRandomMaxel(maxCount, minValue, maxValue);
@@ -148,10 +148,30 @@ namespace WMConsole
             break;
           }
 
+          if((a * b) >> 1 != (a >> 1) * (b >> 1))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(Console.KeyAvailable)
+          {
+            Console.WriteLine();
+            Console.WriteLine("Paused");
+            Console.WriteLine("Last test values:");
+            Console.WriteLine("a = " + a);
+            Console.WriteLine("b = " + b);
+            Console.WriteLine("c = " + c);
+            Console.WriteLine("d = " + d);
+            Console.WriteLine();
+            Console.WriteLine(++testsRun + " tests passed!");
+            break;
+          }
+
           if(++testsRun % 1000 == 0)
           {
             if(testsRun % 10000 == 0)
-              Console.WriteLine(" 10k tests Passed!");
+              Console.WriteLine(" " + (testsRun / 1000) + "k tests passed!");
             else
               Console.Write(".");
           }
@@ -161,23 +181,25 @@ namespace WMConsole
           break;
 
         Console.WriteLine();
-        Console.WriteLine("Paused. Press Enter to exit, any other key to resume...");
+        Console.WriteLine("Press Enter to exit, any other key to resume...");
 
         if(Console.ReadKey().Key == ConsoleKey.Enter)
           break;
+
+        Console.WriteLine();
+        Console.WriteLine("Resuming...");
       }
-      while(true);
 
       Finish();
     }
 
     private static Maxel GenerateRandomMaxel(int maxCount, int minValue, int maxValue)
     {
-      Pixel[] pos = new Pixel[rand.Next(maxCount)];
+      Pixel[] pos = new Pixel[rand.Next(maxCount + 1)];
       for(int i = 0;i < pos.Length;i++)
         pos[i] = new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue));
 
-      Pixel[] neg = new Pixel[rand.Next(maxCount)];
+      Pixel[] neg = new Pixel[rand.Next((maxCount - pos.Length) + 1)];
       for(int i = 0;i < neg.Length;i++)
         neg[i] = new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue));
 
@@ -198,8 +220,7 @@ namespace WMConsole
     private static void Finish()
     {
       Console.WriteLine();
-      Console.WriteLine("Press any key to exit...");
-      Console.ReadKey();
+      Console.WriteLine("Exiting...");
       Console.WriteLine();
       Console.WriteLine();
     }
