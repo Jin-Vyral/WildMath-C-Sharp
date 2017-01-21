@@ -36,6 +36,7 @@ namespace WMConsole
           Maxel a = GenerateRandomMaxel(maxCount, minValue, maxValue);
           Maxel b = GenerateRandomMaxel(maxCount, minValue, maxValue);
           Maxel c = GenerateRandomMaxel(maxCount, minValue, maxValue);
+          Maxel d = GenerateRandomMaxel(maxCount, minValue, maxValue);
 
           // verify the math operations
 
@@ -118,6 +119,30 @@ namespace WMConsole
           }
 
           if(a - b != a * b / (a + b))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if((a / b) + (c / d) != ((a * d) + (b * c)) / (b * d))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a + ((b * c) / (b + c)) != ((a + b) * (a + c)) / ((a + b) + (a + c)))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a + (b - c) != (a + b) - (a + c))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a + b + c != a * b * c / (a - b) / (a - c) / (b - c) * (a - b - c))
           {
             Console.WriteLine("Failed!");
             break;
