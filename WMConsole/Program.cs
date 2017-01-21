@@ -16,71 +16,77 @@ namespace WMConsole
 {
   class Program
   {
+    static int maxCount = 10;
+    static int minValue = -10;
+    static int maxValue = 10;
+    static Random rand = new Random();
+
     static void Main(string[] args)
     {
       PrintGreeting();
 
-      Mset<int> M = new Mset<int>();
+      Console.WriteLine("Testing Maxels...");
 
-      M.AddElement(2);
-      M.AddElement(3);
-      M.AddElement(1);
-      M.AddElement(2);
-      M.AddElement(1);
-      M.AddElement(1, 2);
+      do
+      {
+        while(!Console.KeyAvailable)
+        {
+          Maxel a = GenerateRandomMaxel(maxCount, minValue, maxValue);
+          Maxel b = GenerateRandomMaxel(maxCount, minValue, maxValue);
+          Maxel c = GenerateRandomMaxel(maxCount, minValue, maxValue);
 
-      M.SubtractElement(1, 3);
-      M.SubtractElement(2, 4);
+          // verify the math operations
 
-      Mset<int> N = new Mset<int>(new int[] { 1, 1, 2, 2, 2, 3 });
-      Mset<int> O = new Mset<int>(new int[] { 1, 1, 2, 2, 2, 3 }, new int[] { 1, 2, 4, 4, 4 });
+          if((a * b) * c != a * (b * c))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
 
-      Mset<int> P = M * N; // addition
-      Mset<int> Q = M / N; // subtraction
-      Mset<int> R = O + M; // union
-      Mset<int> S = O - M; // intersection
+          if((a + b) + c != a + (b + c))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
 
-      Console.WriteLine("M = " + M);
-      Console.WriteLine("N = " + N);
-      Console.WriteLine("O = " + O);
-      Console.WriteLine("M * N = " + P);
-      Console.WriteLine("M / N = " + Q);
-      Console.WriteLine("O + N = " + R);
-      Console.WriteLine("O - N = " + S);
+          if(a * (b + c) != (a * b) + (a * c))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
 
-      Maxel X = new Maxel();
+          if((a ^ (b * c)) != (a ^ b) * (a ^ c))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
 
-      X.AddElement(new Pixel(1, 1));
-      X.AddElement(new Pixel(1, 1));
-      X.AddElement(new Pixel(2, 2));
-      X.AddElement(new Pixel(2, 2));
-      X.AddElement(new Pixel(2, 2));
-      X.AddElement(new Pixel(-2, -3), 2);
-      X.AddElement(new Pixel(-3, -2), 2);
-      X.SubtractElement(new Pixel(3, 3), 2);
+        }
 
-      Maxel Y = new Maxel(new Pixel[] { new Pixel(1, 1), new Pixel(3, 3), new Pixel(4, 4), new Pixel(4, 4) });
+        if(Console.ReadKey().Key == ConsoleKey.Enter)
+          break;
 
-      Maxel Z = X * Y;  // addition
-      Maxel W = X / Y;  // subtraction
-      Maxel V = X + Y;  // union
-      Maxel U = X - Y;  // intersection
-      Maxel T = X ^ Y;  // multiplication
-      Maxel A = X >> 1; // shift down
-      Maxel B = X << 1; // shift up
+        Console.WriteLine("Paused. Press Enter to exit, any other key to resume...");
 
-      Console.WriteLine();
-      Console.WriteLine("X = " + X);
-      Console.WriteLine("Y = " + Y);
-      Console.WriteLine("X * Y = " + Z);
-      Console.WriteLine("X / Y = " + W);
-      Console.WriteLine("X + Y = " + V);
-      Console.WriteLine("X - Y = " + U);
-      Console.WriteLine("X ^ Y = " + T);
-      Console.WriteLine("X >> 1 = " + A);
-      Console.WriteLine("X << 1 = " + B);
+        if(Console.ReadKey().Key == ConsoleKey.Enter)
+          break;
+      }
+      while(true);
 
       Finish();
+    }
+
+    private static Maxel GenerateRandomMaxel(int maxCount, int minValue, int maxValue)
+    {
+      Pixel[] pos = new Pixel[rand.Next(maxCount)];
+      for(int i = 0;i < pos.Length;i++)
+        pos[i] = new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue));
+
+      Pixel[] neg = new Pixel[rand.Next(maxCount)];
+      for(int i = 0;i < neg.Length;i++)
+        neg[i] = new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue));
+
+      return new Maxel(pos, neg);
     }
 
     private static void PrintGreeting()
