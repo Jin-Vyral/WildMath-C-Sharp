@@ -1,13 +1,15 @@
 # WildMath-C-Sharp
-C# Class Library for Norman Wildberger
+C# Class Library for Dr. Norman Wildberger's "Maxel Theory"
 
 The WildMath library defines some of the mathematical structures described by Dr. Wildberger in his Math Foundations series.
 Currently included are Pixel, Maxel, and a generic Mset.
 
-This is a work in progress. Nothing has been verified.
-
-This is a Visual Studio 2015 solution. It has only just begun and so it is incomplete and probably has bugs.
+This is a Visual Studio 2015 solution.
 
 This project is in the public domain. Please attribute as you deem appropriate.
 
-Contributors are welcome.
+This is work in progress. Contributors are welcome.
+
+Notes:
+
+The mathematical operators of the Maxel class follow the 'Tropical' notation.
