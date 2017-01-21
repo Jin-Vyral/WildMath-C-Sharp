@@ -300,19 +300,19 @@ namespace WildMath
     ///</summary>
     public bool Equals(Maxel other)
     {
+      int bfound = 0;
+
       foreach(KeyValuePair<Pixel, int> elem in elements)
       {
         int bcnt = 0;
         if(!other.elements.TryGetValue(elem.Key, out bcnt) || (bcnt != elem.Value))
           return false;
+
+        bfound++;
       }
 
-      foreach(KeyValuePair<Pixel, int> elem in other.elements)
-      {
-        int acnt = 0;
-        if(!elements.TryGetValue(elem.Key, out acnt) || (acnt != elem.Value))
-          return false;
-      }
+      if(bfound != other.Size)
+        return false;
 
       return true;
     }
