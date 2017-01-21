@@ -193,12 +193,12 @@ namespace WildMath
 
     public override string ToString()
     {
-      string str = "{ ";
+      string str = "[ ";
 
       foreach(KeyValuePair<TYPE, int> elem in elements)
         str += elem.Key + "[" + elem.Value + "] ";
 
-      return str + "}";
+      return str + "]";
     }
 
     protected Dictionary<TYPE, int> elements;

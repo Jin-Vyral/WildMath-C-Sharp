@@ -481,12 +481,12 @@ namespace WildMath
     ///</summary>
     public override string ToString()
     {
-      string str = "{ ";
+      string str = "[ ";
 
       foreach(KeyValuePair<Pixel, int> elem in elements)
         str += elem.Key + "[" + elem.Value + "] ";
 
-      return str + "}";
+      return str + "]";
     }
 
     ///<summary>
