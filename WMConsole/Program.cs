@@ -154,6 +154,18 @@ namespace WMConsole
             break;
           }
 
+          if(a != a.Transpose().Transpose())
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if((a ^ b).Transpose() != ((b.Transpose()) ^ (a.Transpose())))
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
           if(Console.KeyAvailable)
           {
             Console.WriteLine();
