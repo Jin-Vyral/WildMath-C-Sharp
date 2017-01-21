@@ -285,6 +285,19 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Negates Maxel 'm'
+    ///</summary>
+    public static Maxel operator ~(Maxel m)
+    {
+      Maxel neg = new Maxel();
+
+      foreach(KeyValuePair<Pixel, int> elem in m.elements)
+        neg.elements.Add(elem.Key, -elem.Value);
+
+      return neg;
+    }
+
+    ///<summary>
     /// Implements C# generic Equals method
     ///</summary>
     public override bool Equals(object obj)
