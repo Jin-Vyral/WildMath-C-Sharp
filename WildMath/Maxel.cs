@@ -433,6 +433,22 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Returns the cross-Maxel of integer sets 'a' and 'b'
+    ///</summary>
+    public static Maxel Cross(int[] a, int[] b)
+    {
+      Maxel m = new Maxel();
+
+      foreach(int ia in a)
+      {
+        foreach(int ib in b)
+          m.AddElement(new Pixel(ia, ib));
+      }
+
+      return m;
+    }
+
+    ///<summary>
     /// Is the Maxel diagonal?
     ///</summary>
     public bool IsDiagonal
