@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace WildMath
 {
+  //NOTE: This class was used as an initial test. It hasn't been verified or maintained
   public class Mset<TYPE>
   {
     public Mset()
