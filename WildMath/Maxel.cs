@@ -47,7 +47,8 @@ namespace WildMath
     public int Count { get { return elements.Count; } }
 
     ///<summary>
-    /// The total number of pixels in the Maxel
+    /// The magnitude of the Maxel (can be negative or zero)
+    /// NOTE: This is implemented as defined in MF159
     ///</summary>
     public int Size
     {
@@ -56,7 +57,7 @@ namespace WildMath
         int size = 0;
 
         foreach(KeyValuePair<Pixel, int> elem in elements)
-          size += Math.Abs(elem.Value);
+          size += elem.Value;
 
         return size;
       }
