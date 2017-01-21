@@ -1,5 +1,6 @@
 ﻿// WildMath Console
 //   By David Kaplan
+//   Based on "Maxel Theory" of Dr. Norman Wildberger UNSW
 //
 //   Program.cs
 //
@@ -19,8 +20,8 @@ namespace WMConsole
     static int maxElements = 7;
     static int minValue = -5;
     static int maxValue = 5;
-    static int minCount = -5;
-    static int maxCount = 5;
+    static int minCount = -10;
+    static int maxCount = 10;
     static Random rand = new Random();
 
     static void Main(string[] args)
@@ -222,7 +223,7 @@ namespace WMConsole
     {
       Console.WriteLine("WildMath Console");
       Console.WriteLine("By David Kaplan");
-      Console.WriteLine("Based on the teachings of Dr Norman Wildberger UNSW");
+      Console.WriteLine("Based on \"Maxel Theory\" of Dr. Norman Wildberger UNSW");
       Console.WriteLine();
       Console.WriteLine("Running...");
       Console.WriteLine();

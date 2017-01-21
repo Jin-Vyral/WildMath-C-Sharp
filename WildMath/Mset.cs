@@ -1,5 +1,6 @@
 ﻿// WildMath Library
 //   By David Kaplan
+//   Based on "Maxel Theory" of Dr. Norman Wildberger UNSW
 //
 //   Mset.cs
 //

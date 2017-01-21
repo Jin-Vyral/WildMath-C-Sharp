@@ -1,4 +1,12 @@
-﻿using System;
+﻿// WildMath Library
+//   By David Kaplan
+//   Based on "Maxel Theory" of Dr. Norman Wildberger UNSW
+//
+//   Pixel.cs
+//
+//   Defines the Pixel class
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
