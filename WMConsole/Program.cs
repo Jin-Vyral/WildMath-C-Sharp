@@ -27,6 +27,8 @@ namespace WMConsole
 
       Console.WriteLine("Testing Maxels...");
 
+      int testsRun = 0;
+
       do
       {
         while(!Console.KeyAvailable)
@@ -49,6 +51,18 @@ namespace WMConsole
             break;
           }
 
+          if(a * b != b * a)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a + b != b + a)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
           if(a * (b + c) != (a * b) + (a * c))
           {
             Console.WriteLine("Failed!");
@@ -61,6 +75,37 @@ namespace WMConsole
             break;
           }
 
+          if(a + a != a)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if((Maxel.Zero ^ a) != Maxel.Zero)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if((0 ^ a) != Maxel.Zero)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(a * Maxel.Zero != a)
+          {
+            Console.WriteLine("Failed!");
+            break;
+          }
+
+          if(++testsRun % 1000 == 0)
+          {
+            if(testsRun % 10000 == 0)
+              Console.WriteLine(" 10k tests Passed!");
+            else
+              Console.Write(".");
+          }
         }
 
         if(Console.ReadKey().Key == ConsoleKey.Enter)
