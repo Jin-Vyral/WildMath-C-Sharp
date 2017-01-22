@@ -505,6 +505,38 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Returns a Vexel of the given 'row' in the Maxel
+    ///</summary>
+    public Vexel Row(int row)
+    {
+      Vexel rv = new Vexel();
+
+      foreach(KeyValuePair<Pixel, int> elem in elements)
+      {
+        if(elem.Key.X == row)
+          rv.AddElement(elem.Key.Y);
+      }
+
+      return rv;
+    }
+
+    ///<summary>
+    /// Returns a Vexel of the given 'column' in the Maxel
+    ///</summary>
+    public Vexel Column(int column)
+    {
+      Vexel cv = new Vexel();
+
+      foreach(KeyValuePair<Pixel, int> elem in elements)
+      {
+        if(elem.Key.Y == column)
+          cv.AddElement(elem.Key.X);
+      }
+
+      return cv;
+    }
+
+    ///<summary>
     /// Is the Maxel zero?
     ///</summary>
     public bool IsZero()
