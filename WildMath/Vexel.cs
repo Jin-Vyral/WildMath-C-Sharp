@@ -125,6 +125,70 @@ namespace WildMath
 
     public Dictionary<int, int> Elements { get { return elements; } }
 
+
+    ///<summary>
+    /// Implements C# generic Equals method
+    ///</summary>
+    public override bool Equals(object obj)
+    {
+      if((obj != null) && (obj is Vexel))
+        return this.Equals(obj as Vexel);
+
+      return false;
+    }
+
+    ///<summary>
+    /// Tests for equality with Vexel 'other'
+    ///</summary>
+    public bool Equals(Vexel other)
+    {
+      if(elements.Count != other.elements.Count)
+        return false;
+
+      foreach(KeyValuePair<int, int> elem in elements)
+      {
+        int bcnt = 0;
+        if(!other.elements.TryGetValue(elem.Key, out bcnt) || (bcnt != elem.Value))
+          return false;
+      }
+
+      return true;
+    }
+
+    ///<summary>
+    /// Tests for equality between Vexels 'a' and 'b'
+    ///</summary>
+    public static bool operator ==(Vexel a, Vexel b)
+    {
+      if(ReferenceEquals(a, null))
+      {
+        if(ReferenceEquals(b, null))
+          return true;
+
+        return false;
+      }
+
+      return a.Equals(b);
+    }
+
+    ///<summary>
+    /// Tests for inequality between Vexels 'a' and 'b'
+    ///</summary>
+    public static bool operator !=(Vexel a, Vexel b)
+    {
+      return !(a == b);
+    }
+
+    ///<summary>
+    /// Returns default hash code
+    ///</summary>
+    public override int GetHashCode()
+    {
+      // Any ideas for a good hash are welcome
+      // For now this is just here to get it to compile
+      return base.GetHashCode();
+    }
+
     ///<summary>
     /// Returns the cross-Maxel of Vexel 'a' and Vexel 'b'
     ///</summary>
