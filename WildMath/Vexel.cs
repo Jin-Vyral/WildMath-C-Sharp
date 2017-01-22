@@ -173,6 +173,7 @@ namespace WildMath
         return true;
       }
     }
+
     protected Dictionary<int, int> elements;
   }
 }

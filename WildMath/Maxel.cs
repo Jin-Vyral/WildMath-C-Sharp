@@ -420,17 +420,33 @@ namespace WildMath
     ///<summary>
     /// The support of the Maxel
     ///</summary>
-    public Pixel[] Support
+    public Maxel Support
     {
       get
       {
-        Pixel[] pix = new Pixel[elements.Count];
-        int i = 0;
+        Maxel supp = new Maxel();
 
         foreach(KeyValuePair<Pixel, int> elem in elements)
-          pix[i++] = elem.Key;
+          supp.AddElement(elem.Key);
 
-        return pix;
+        return supp;
+      }
+    }
+
+    ///<summary>
+    /// Is the Maxel a support?
+    ///</summary>
+    public bool IsSupport
+    {
+      get
+      {
+        foreach(KeyValuePair<Pixel, int> elem in elements)
+        {
+          if(elem.Value != 1)
+            return false;
+        }
+
+        return true;
       }
     }
 
