@@ -125,6 +125,21 @@ namespace WildMath
 
     public Dictionary<int, int> Elements { get { return elements; } }
 
+    ///<summary>
+    /// Returns the cross-Maxel of Vexel 'a' and Vexel 'b'
+    ///</summary>
+    public static Maxel Cross(Vexel a, Vexel b)
+    {
+      Maxel cross = new Maxel();
+
+      foreach(KeyValuePair<int, int> ae in a.elements)
+      {
+        foreach(KeyValuePair<int, int> be in b.elements)
+          cross.AddElement(new Pixel(ae.Key, be.Key), ae.Value * be.Value);
+      }
+
+      return cross;
+    }
     protected Dictionary<int, int> elements;
   }
 }
