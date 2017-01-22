@@ -123,6 +123,8 @@ namespace WildMath
       elements.Clear();
     }
 
+    public Dictionary<Pixel, int> Elements { get { return elements; } }
+
     ///<summary>
     /// Adds Maxel 'b' to Maxel 'a'
     ///</summary>
