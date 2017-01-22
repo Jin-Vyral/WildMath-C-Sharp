@@ -43,127 +43,27 @@ namespace WMConsole
 
           // verify the Maxel math operations
 
-          if((a * b) * c != a * (b * c))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((a + b) + c != a + (b + c))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a * b != b * a)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a + b != b + a)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a * (b + c) != (a * b) + (a * c))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((a ^ (b * c)) != (a ^ b) * (a ^ c))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a + a != a)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((Maxel.Zero ^ a) != Maxel.Zero)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((0 ^ a) != Maxel.Zero)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a * Maxel.Zero != a)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a != ~(~a))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a / b != a * (~b))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((a * c) / (b * c) != a / b)
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a - b != a * b / (a + b))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((a / b) + (c / d) != ((a * d) + (b * c)) / (b * d))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a + ((b * c) / (b + c)) != ((a + b) * (a + c)) / ((a + b) + (a + c)))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a + (b - c) != (a + b) - (a + c))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a + b + c != a * b * c / (a - b) / (a - c) / (b - c) * (a - b - c))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((a * b) >> 1 != (a >> 1) * (b >> 1))
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if(a != a.Transpose().Transpose())
-          {
-            MaxelFail(a, b, c, d);
-            break;
-          }
-
-          if((a ^ b).Transpose() != ((b.Transpose()) ^ (a.Transpose())))
+          if(((a * b) * c != a * (b * c))
+          ||((a + b) + c != a + (b + c))
+          ||(a * b != b * a)
+          ||(a + b != b + a)
+          ||(a * (b + c) != (a * b) + (a * c))
+          ||((a ^ (b * c)) != (a ^ b) * (a ^ c))
+          ||(a + a != a)
+          ||((Maxel.Zero ^ a) != Maxel.Zero)
+          ||((0 ^ a) != Maxel.Zero)
+          ||(a * Maxel.Zero != a)
+          ||(a != ~(~a))
+          ||(a / b != a * (~b))
+          ||((a * c) / (b * c) != a / b)
+          ||(a - b != a * b / (a + b))
+          ||((a / b) + (c / d) != ((a * d) + (b * c)) / (b * d))
+          ||(a + ((b * c) / (b + c)) != ((a + b) * (a + c)) / ((a + b) + (a + c)))
+          ||(a + (b - c) != (a + b) - (a + c))
+          ||(a + b + c != a * b * c / (a - b) / (a - c) / (b - c) * (a - b - c))
+          ||((a * b) >> 1 != (a >> 1) * (b >> 1))
+          ||(a != a.Transpose().Transpose())
+          ||((a ^ b).Transpose() != ((b.Transpose()) ^ (a.Transpose()))))
           {
             MaxelFail(a, b, c, d);
             break;
@@ -176,13 +76,8 @@ namespace WMConsole
           Vexel t = Vexel.Zero;
           Vexel u = Vexel.Zero;
 
-          if(!s.IsSupport)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(Vexel.Cross(r, r).Support != Vexel.Cross(s, s))
+          if((!s.IsSupport)
+          ||(Vexel.Cross(r, r).Support != Vexel.Cross(s, s)))
           {
             VexelFail(r, s, t, u);
             break;
@@ -193,115 +88,25 @@ namespace WMConsole
           t = GenerateRandomVexel();
           u = GenerateRandomVexel();
 
-          if((r * s) * t != r * (s * t))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((r + s) + t != r + (s + t))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r * s != s * r)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r + s != s + r)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r * (s + t) != (r * s) + (r * t))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((r ^ (s * t)) != (r ^ s) * (r ^ t))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r + r != r)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((Vexel.Zero ^ r) != Vexel.Zero)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((0 ^ r) != Vexel.Zero)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r * Vexel.Zero != r)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r != ~(~r))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r / s != r * (~s))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((r * t) / (s * t) != r / s)
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r - s != r * s / (r + s))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((r / s) + (t / u) != ((r * u) + (s * t)) / (s * u))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r + ((s * t) / (s + t)) != ((r + s) * (r + t)) / ((r + s) + (r + t)))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r + (s - t) != (r + s) - (r + t))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if(r + s + t != r * s * t / (r - s) / (r - t) / (s - t) * (r - s - t))
-          {
-            VexelFail(r, s, t, u);
-            break;
-          }
-
-          if((r * s) >> 1 != (r >> 1) * (s >> 1))
+          if(((r * s) * t != r * (s * t))
+          ||((r + s) + t != r + (s + t))
+          ||(r * s != s * r)
+          ||(r + s != s + r)
+          ||(r * (s + t) != (r * s) + (r * t))
+          ||((r ^ (s * t)) != (r ^ s) * (r ^ t))
+          ||(r + r != r)
+          ||((Vexel.Zero ^ r) != Vexel.Zero)
+          ||((0 ^ r) != Vexel.Zero)
+          ||(r * Vexel.Zero != r)
+          ||(r != ~(~r))
+          ||(r / s != r * (~s))
+          ||((r * t) / (s * t) != r / s)
+          ||(r - s != r * s / (r + s))
+          ||((r / s) + (t / u) != ((r * u) + (s * t)) / (s * u))
+          ||(r + ((s * t) / (s + t)) != ((r + s) * (r + t)) / ((r + s) + (r + t)))
+          ||(r + (s - t) != (r + s) - (r + t))
+          ||(r + s + t != r * s * t / (r - s) / (r - t) / (s - t) * (r - s - t))
+          ||((r * s) >> 1 != (r >> 1) * (s >> 1)))
           {
             VexelFail(r, s, t, u);
             break;
