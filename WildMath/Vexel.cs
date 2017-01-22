@@ -174,6 +174,19 @@ namespace WildMath
       }
     }
 
+    ///<summary>
+    /// Converts the Vexel into a more readable form
+    ///</summary>
+    public override string ToString()
+    {
+      string str = "[ ";
+
+      foreach(KeyValuePair<int, int> elem in elements)
+        str += elem.Key + "[" + elem.Value + "] ";
+
+      return str + "]";
+    }
+
     protected Dictionary<int, int> elements;
   }
 }

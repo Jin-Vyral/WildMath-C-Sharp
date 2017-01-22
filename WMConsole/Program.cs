@@ -17,7 +17,7 @@ namespace WMConsole
 {
   class Program
   {
-    static int maxElements = 7;
+    static int maxElements = 50;
     static int minValue = -5;
     static int maxValue = 5;
     static int minCount = -10;
@@ -41,7 +41,7 @@ namespace WMConsole
           Maxel c = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
           Maxel d = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
 
-          // verify the math operations
+          // verify the Maxel math operations
 
           if((a * b) * c != a * (b * c))
           {
@@ -169,6 +169,23 @@ namespace WMConsole
             break;
           }
 
+          // verify the Vexel math operations
+
+          Vexel r = (a * b * c * d).Row(rand.Next(minValue, maxValue));
+          Vexel s = r.Support;
+
+          if(!s.IsSupport)
+          {
+            VexelFail(r, s);
+            break;
+          }
+
+          if(Vexel.Cross(r, r).Support != Vexel.Cross(s, s))
+          {
+            VexelFail(r, s);
+            break;
+          }
+
           if(Console.KeyAvailable)
           {
             Console.WriteLine();
@@ -178,6 +195,8 @@ namespace WMConsole
             Console.WriteLine("b = " + b);
             Console.WriteLine("c = " + c);
             Console.WriteLine("d = " + d);
+            Console.WriteLine("r = " + r);
+            Console.WriteLine("s = " + s);
             Console.WriteLine();
             Console.WriteLine(++testsRun + " tests passed!");
             break;
@@ -247,6 +266,16 @@ namespace WMConsole
       Console.WriteLine("b = " + b);
       Console.WriteLine("c = " + c);
       Console.WriteLine("d = " + d);
+      Console.WriteLine();
+    }
+
+    private static void VexelFail(Vexel r, Vexel s)
+    {
+      Console.WriteLine();
+      Console.WriteLine("Vexel test failed!");
+      Console.WriteLine("Last test values:");
+      Console.WriteLine("r = " + r);
+      Console.WriteLine("s = " + s);
       Console.WriteLine();
     }
   }
