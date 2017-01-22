@@ -4,7 +4,7 @@
 //
 //   Maxel.cs
 //
-//   Defines Maxel class
+//   Defines the Maxel class
 
 using System;
 using System.Collections.Generic;
