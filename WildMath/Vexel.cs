@@ -283,6 +283,45 @@ namespace WildMath
     }
 
     ///<summary>
+    /// Shifts Vexel 'a' up by 'k' steps
+    ///</summary>
+    public static Vexel operator <<(Vexel a, int k)
+    {
+      Vexel shift = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+        shift.elements.Add(elem.Key + k, elem.Value);
+
+      return shift;
+    }
+
+    ///<summary>
+    /// Shifts Vexel 'a' down by 'k' steps
+    ///</summary>
+    public static Vexel operator >>(Vexel a, int k)
+    {
+      Vexel shift = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+        shift.elements.Add(elem.Key - k, elem.Value);
+
+      return shift;
+    }
+
+    ///<summary>
+    /// Negates Maxel 'm'
+    ///</summary>
+    public static Vexel operator ~(Vexel v)
+    {
+      Vexel neg = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in v.elements)
+        neg.elements.Add(elem.Key, -elem.Value);
+
+      return neg;
+    }
+
+    ///<summary>
     /// Implements C# generic Equals method
     ///</summary>
     public override bool Equals(object obj)
@@ -393,6 +432,19 @@ namespace WildMath
         return true;
       }
     }
+
+    ///<summary>
+    /// Is the Vexel zero?
+    ///</summary>
+    public bool IsZero()
+    {
+      return elements.Count == 0;
+    }
+
+    ///<summary>
+    /// The Zero Vexel
+    ///</summary>
+    public static Vexel Zero { get { return new Vexel(); } }
 
     ///<summary>
     /// Converts the Vexel into a more readable form
