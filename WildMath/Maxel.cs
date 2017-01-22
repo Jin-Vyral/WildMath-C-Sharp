@@ -514,7 +514,7 @@ namespace WildMath
       foreach(KeyValuePair<Pixel, int> elem in elements)
       {
         if(elem.Key.X == row)
-          rv.AddElement(elem.Key.Y);
+          rv.AddElement(elem.Key.Y, elem.Value);
       }
 
       return rv;
@@ -530,7 +530,7 @@ namespace WildMath
       foreach(KeyValuePair<Pixel, int> elem in elements)
       {
         if(elem.Key.Y == column)
-          cv.AddElement(elem.Key.X);
+          cv.AddElement(elem.Key.X, elem.Value);
       }
 
       return cv;
