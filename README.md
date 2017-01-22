@@ -6,7 +6,7 @@ Currently included are Pixel, Maxel, and a generic Mset.
 
 This is a Visual Studio 2015 solution.
 
-This project is in the public domain. Please attribute as you deem appropriate.
+This project is in the public domain. Please attribute any derivations appropriately.
 
 This is work in progress. Contributors are welcome.
 
