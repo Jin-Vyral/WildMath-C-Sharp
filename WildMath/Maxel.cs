@@ -459,9 +459,7 @@ namespace WildMath
       {
         foreach(KeyValuePair<Pixel, int> elem in elements)
         {
-          Pixel p = elem.Key;
-
-          if(!p.IsDiagonal)
+          if(!elem.Key.IsDiagonal)
             return false;
         }
 
