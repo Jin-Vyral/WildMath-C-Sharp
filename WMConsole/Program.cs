@@ -45,127 +45,127 @@ namespace WMConsole
 
           if((a * b) * c != a * (b * c))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((a + b) + c != a + (b + c))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a * b != b * a)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a + b != b + a)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a * (b + c) != (a * b) + (a * c))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((a ^ (b * c)) != (a ^ b) * (a ^ c))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a + a != a)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((Maxel.Zero ^ a) != Maxel.Zero)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((0 ^ a) != Maxel.Zero)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a * Maxel.Zero != a)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a != ~(~a))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a / b != a * (~b))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((a * c) / (b * c) != a / b)
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a - b != a * b / (a + b))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((a / b) + (c / d) != ((a * d) + (b * c)) / (b * d))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a + ((b * c) / (b + c)) != ((a + b) * (a + c)) / ((a + b) + (a + c)))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a + (b - c) != (a + b) - (a + c))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a + b + c != a * b * c / (a - b) / (a - c) / (b - c) * (a - b - c))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((a * b) >> 1 != (a >> 1) * (b >> 1))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if(a != a.Transpose().Transpose())
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
           if((a ^ b).Transpose() != ((b.Transpose()) ^ (a.Transpose())))
           {
-            Console.WriteLine("Failed!");
+            MaxelFail(a, b, c, d);
             break;
           }
 
@@ -235,6 +235,18 @@ namespace WMConsole
       Console.WriteLine();
       Console.WriteLine("Exiting...");
       Console.WriteLine();
+      Console.WriteLine();
+    }
+
+    private static void MaxelFail(Maxel a, Maxel b, Maxel c, Maxel d)
+    {
+      Console.WriteLine();
+      Console.WriteLine("Maxel test failed!");
+      Console.WriteLine("Last test values:");
+      Console.WriteLine("a = " + a);
+      Console.WriteLine("b = " + b);
+      Console.WriteLine("c = " + c);
+      Console.WriteLine("d = " + d);
       Console.WriteLine();
     }
   }
