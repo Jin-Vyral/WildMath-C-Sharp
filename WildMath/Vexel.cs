@@ -125,6 +125,162 @@ namespace WildMath
 
     public Dictionary<int, int> Elements { get { return elements; } }
 
+    ///<summary>
+    /// Adds Maxel 'b' to Maxel 'a'
+    ///</summary>
+    public static Vexel operator *(Vexel a, Vexel b)
+    {
+      Vexel sum = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+      {
+        int tot = elem.Value;
+        int bcnt = 0;
+
+        if(b.elements.TryGetValue(elem.Key, out bcnt))
+          tot += bcnt;
+
+        if(tot != 0)
+          sum.elements.Add(elem.Key, tot);
+      }
+
+      foreach(KeyValuePair<int, int> elem in b.elements)
+      {
+        if(!a.elements.ContainsKey(elem.Key))
+          sum.elements.Add(elem.Key, elem.Value);
+      }
+
+      return sum;
+    }
+
+    ///<summary>
+    /// Subtracts Vexel 'b' from Vexel 'a'
+    ///</summary>
+    public static Vexel operator /(Vexel a, Vexel b)
+    {
+      Vexel diff = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+      {
+        int tot = elem.Value;
+        int bcnt = 0;
+
+        if(b.elements.TryGetValue(elem.Key, out bcnt))
+          tot -= bcnt;
+
+        if(tot != 0)
+          diff.elements.Add(elem.Key, tot);
+      }
+
+      foreach(KeyValuePair<int, int> elem in b.elements)
+      {
+        if(!a.elements.ContainsKey(elem.Key))
+          diff.elements.Add(elem.Key, -elem.Value);
+      }
+
+      return diff;
+    }
+
+    ///<summary>
+    /// Returns the intersection of Vexels 'a' and 'b'
+    ///</summary>
+    public static Vexel operator -(Vexel a, Vexel b)
+    {
+      Vexel min = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+      {
+        int acnt = elem.Value;
+        int bcnt = 0;
+
+        if(b.elements.TryGetValue(elem.Key, out bcnt))
+        {
+          if(acnt < bcnt)
+            min.elements.Add(elem.Key, acnt);
+          else
+            min.elements.Add(elem.Key, bcnt);
+        }
+        else if(acnt < 0)
+          min.elements.Add(elem.Key, acnt);
+      }
+
+      foreach(KeyValuePair<int, int> elem in b.elements)
+      {
+        if(!a.elements.ContainsKey(elem.Key) && (elem.Value < 0))
+          min.elements.Add(elem.Key, elem.Value);
+      }
+
+      return min;
+    }
+
+    ///<summary>
+    /// Returns the union of Vexels 'a' and 'b'
+    ///</summary>
+    public static Vexel operator +(Vexel a, Vexel b)
+    {
+      Vexel max = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+      {
+        int acnt = elem.Value;
+        int bcnt = 0;
+
+        if(b.elements.TryGetValue(elem.Key, out bcnt))
+        {
+          if(acnt > bcnt)
+            max.elements.Add(elem.Key, acnt);
+          else
+            max.elements.Add(elem.Key, bcnt);
+        }
+        else if(acnt > 0)
+          max.elements.Add(elem.Key, acnt);
+      }
+
+      foreach(KeyValuePair<int, int> elem in b.elements)
+      {
+        if(!a.elements.ContainsKey(elem.Key) && (elem.Value > 0))
+          max.elements.Add(elem.Key, elem.Value);
+      }
+
+      return max;
+    }
+
+    ///<summary>
+    /// Multiplies Vexel 'a' by Vexel 'b'
+    ///</summary>
+    public static Vexel operator ^(Vexel a, Vexel b)
+    {
+      Vexel mul = new Vexel();
+
+      foreach(KeyValuePair<int, int> ae in a.elements)
+      {
+        foreach(KeyValuePair<int, int> be in b.elements)
+          mul.AddElement(ae.Key, ae.Value * be.Value);
+      }
+
+      return mul;
+    }
+
+    ///<summary>
+    /// Multiplies Vexel 'a' by integer 'b'
+    ///</summary>
+    public static Vexel operator ^(Vexel a, int b)
+    {
+      Vexel mul = new Vexel();
+
+      foreach(KeyValuePair<int, int> elem in a.elements)
+        mul.AddElement(elem.Key, elem.Value * b);
+
+      return mul;
+    }
+
+    ///<summary>
+    /// Multiplies Vexel 'a' by integer 'b'
+    ///</summary>
+    public static Vexel operator ^(int b, Vexel a)
+    {
+      return a ^ b;
+    }
 
     ///<summary>
     /// Implements C# generic Equals method
