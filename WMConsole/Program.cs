@@ -36,10 +36,10 @@ namespace WMConsole
       {
         while(true)
         {
-          Maxel a = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
-          Maxel b = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
-          Maxel c = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
-          Maxel d = GenerateRandomMaxel(maxElements, minValue, maxValue, minCount, maxCount);
+          Maxel a = GenerateRandomMaxel();
+          Maxel b = GenerateRandomMaxel();
+          Maxel c = GenerateRandomMaxel();
+          Maxel d = GenerateRandomMaxel();
 
           // verify the Maxel math operations
 
@@ -173,16 +173,137 @@ namespace WMConsole
 
           Vexel r = (a * b * c * d).Row(rand.Next(minValue, maxValue));
           Vexel s = r.Support;
+          Vexel t = Vexel.Zero;
+          Vexel u = Vexel.Zero;
 
           if(!s.IsSupport)
           {
-            VexelFail(r, s);
+            VexelFail(r, s, t, u);
             break;
           }
 
           if(Vexel.Cross(r, r).Support != Vexel.Cross(s, s))
           {
-            VexelFail(r, s);
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          r = GenerateRandomVexel();
+          s = GenerateRandomVexel();
+          t = GenerateRandomVexel();
+          u = GenerateRandomVexel();
+
+          if((r * s) * t != r * (s * t))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((r + s) + t != r + (s + t))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r * s != s * r)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r + s != s + r)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r * (s + t) != (r * s) + (r * t))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((r ^ (s * t)) != (r ^ s) * (r ^ t))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r + r != r)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((Vexel.Zero ^ r) != Vexel.Zero)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((0 ^ r) != Vexel.Zero)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r * Vexel.Zero != r)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r != ~(~r))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r / s != r * (~s))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((r * t) / (s * t) != r / s)
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r - s != r * s / (r + s))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((r / s) + (t / u) != ((r * u) + (s * t)) / (s * u))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r + ((s * t) / (s + t)) != ((r + s) * (r + t)) / ((r + s) + (r + t)))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r + (s - t) != (r + s) - (r + t))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if(r + s + t != r * s * t / (r - s) / (r - t) / (s - t) * (r - s - t))
+          {
+            VexelFail(r, s, t, u);
+            break;
+          }
+
+          if((r * s) >> 1 != (r >> 1) * (s >> 1))
+          {
+            VexelFail(r, s, t, u);
             break;
           }
 
@@ -197,6 +318,8 @@ namespace WMConsole
             Console.WriteLine("d = " + d);
             Console.WriteLine("r = " + r);
             Console.WriteLine("s = " + s);
+            Console.WriteLine("t = " + t);
+            Console.WriteLine("u = " + u);
             Console.WriteLine();
             Console.WriteLine(++testsRun + " tests passed!");
             break;
@@ -227,7 +350,7 @@ namespace WMConsole
       Finish();
     }
 
-    private static Maxel GenerateRandomMaxel(int maxElements, int minValue, int maxValue, int minCount, int maxCount)
+    private static Maxel GenerateRandomMaxel()
     {
       Maxel m = new Maxel();
       int elementCount = rand.Next(maxElements + 1);
@@ -236,6 +359,17 @@ namespace WMConsole
         m.AddElement(new Pixel(rand.Next(Program.minValue, Program.maxValue), rand.Next(Program.minValue, Program.maxValue)), rand.Next(minCount, maxCount));
 
       return m;
+    }
+
+    private static Vexel GenerateRandomVexel()
+    {
+      Vexel v = new Vexel();
+      int elementCount = rand.Next(maxElements + 1);
+
+      for(int i = 0;i < elementCount;i++)
+        v.AddElement(rand.Next(Program.minValue, Program.maxValue), rand.Next(minCount, maxCount));
+
+      return v;
     }
 
     private static void PrintGreeting()
@@ -269,13 +403,15 @@ namespace WMConsole
       Console.WriteLine();
     }
 
-    private static void VexelFail(Vexel r, Vexel s)
+    private static void VexelFail(Vexel r, Vexel s, Vexel t, Vexel u)
     {
       Console.WriteLine();
       Console.WriteLine("Vexel test failed!");
       Console.WriteLine("Last test values:");
       Console.WriteLine("r = " + r);
       Console.WriteLine("s = " + s);
+      Console.WriteLine("t = " + t);
+      Console.WriteLine("u = " + u);
       Console.WriteLine();
     }
   }
