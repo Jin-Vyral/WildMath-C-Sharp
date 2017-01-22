@@ -140,6 +140,39 @@ namespace WildMath
 
       return cross;
     }
+
+    ///<summary>
+    /// The support of the Vexel
+    ///</summary>
+    public Vexel Support
+    {
+      get
+      {
+        Vexel supp = new Vexel();
+
+        foreach(KeyValuePair<int, int> elem in elements)
+          supp.AddElement(elem.Key);
+
+        return supp;
+      }
+    }
+
+    ///<summary>
+    /// Is the Vexel a support?
+    ///</summary>
+    public bool IsSupport
+    {
+      get
+      {
+        foreach(KeyValuePair<int, int> elem in elements)
+        {
+          if(elem.Value != 1)
+            return false;
+        }
+
+        return true;
+      }
+    }
     protected Dictionary<int, int> elements;
   }
 }
