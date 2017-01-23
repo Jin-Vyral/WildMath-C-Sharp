@@ -28,7 +28,7 @@ namespace WMConsole
     {
       PrintGreeting();
 
-      Console.WriteLine("Testing Maxels...");
+      Console.WriteLine("Testing...");
 
       int testsRun = 0;
 
