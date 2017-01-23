@@ -255,7 +255,7 @@ namespace WildMath
       foreach(KeyValuePair<int, int> ae in a.elements)
       {
         foreach(KeyValuePair<int, int> be in b.elements)
-          mul.AddElement(ae.Key, ae.Value * be.Value);
+          mul.AddElement(ae.Key + be.Key, ae.Value * be.Value);
       }
 
       return mul;
