@@ -152,13 +152,13 @@ namespace WildMath
           tot += bcnt;
 
         if(tot != 0)
-          sum.elements.Add(elem.Key, tot);
+          sum.elements.Add(new Pixel(elem.Key), tot);
       }
 
       foreach(KeyValuePair<Pixel, int> elem in b.elements)
       {
         if(!a.elements.ContainsKey(elem.Key))
-          sum.elements.Add(elem.Key, elem.Value);
+          sum.elements.Add(new Pixel(elem.Key), elem.Value);
       }
 
       return sum;
@@ -180,13 +180,13 @@ namespace WildMath
           tot -= bcnt;
 
         if(tot != 0)
-          diff.elements.Add(elem.Key, tot);
+          diff.elements.Add(new Pixel(elem.Key), tot);
       }
 
       foreach(KeyValuePair<Pixel, int> elem in b.elements)
       {
         if(!a.elements.ContainsKey(elem.Key))
-          diff.elements.Add(elem.Key, -elem.Value);
+          diff.elements.Add(new Pixel(elem.Key), -elem.Value);
       }
 
       return diff;
@@ -207,18 +207,18 @@ namespace WildMath
         if(b.elements.TryGetValue(elem.Key, out bcnt))
         {
           if(acnt < bcnt)
-            min.elements.Add(elem.Key, acnt);
+            min.elements.Add(new Pixel(elem.Key), acnt);
           else
-            min.elements.Add(elem.Key, bcnt);
+            min.elements.Add(new Pixel(elem.Key), bcnt);
         }
         else if(acnt < 0)
-          min.elements.Add(elem.Key, acnt);
+          min.elements.Add(new Pixel(elem.Key), acnt);
       }
 
       foreach(KeyValuePair<Pixel, int> elem in b.elements)
       {
         if(!a.elements.ContainsKey(elem.Key) && (elem.Value < 0))
-          min.elements.Add(elem.Key, elem.Value);
+          min.elements.Add(new Pixel(elem.Key), elem.Value);
       }
 
       return min;
@@ -239,18 +239,18 @@ namespace WildMath
         if(b.elements.TryGetValue(elem.Key, out bcnt))
         {
           if(acnt > bcnt)
-            max.elements.Add(elem.Key, acnt);
+            max.elements.Add(new Pixel(elem.Key), acnt);
           else
-            max.elements.Add(elem.Key, bcnt);
+            max.elements.Add(new Pixel(elem.Key), bcnt);
         }
         else if(acnt > 0)
-          max.elements.Add(elem.Key, acnt);
+          max.elements.Add(new Pixel(elem.Key), acnt);
       }
 
       foreach(KeyValuePair<Pixel, int> elem in b.elements)
       {
         if(!a.elements.ContainsKey(elem.Key) && (elem.Value > 0))
-          max.elements.Add(elem.Key, elem.Value);
+          max.elements.Add(new Pixel(elem.Key), elem.Value);
       }
 
       return max;
@@ -283,7 +283,7 @@ namespace WildMath
       Maxel mul = new Maxel();
 
       foreach(KeyValuePair<Pixel, int> elem in a.elements)
-        mul.AddElement(elem.Key, elem.Value * b);
+        mul.AddElement(new Pixel(elem.Key), elem.Value * b);
 
       return mul;
     }
@@ -330,7 +330,7 @@ namespace WildMath
       Maxel neg = new Maxel();
 
       foreach(KeyValuePair<Pixel, int> elem in m.elements)
-        neg.elements.Add(elem.Key, -elem.Value);
+        neg.elements.Add(new Pixel(elem.Key), -elem.Value);
 
       return neg;
     }
@@ -438,7 +438,7 @@ namespace WildMath
         Maxel supp = new Maxel();
 
         foreach(KeyValuePair<Pixel, int> elem in elements)
-          supp.AddElement(elem.Key);
+          supp.AddElement(new Pixel(elem.Key));
 
         return supp;
       }
