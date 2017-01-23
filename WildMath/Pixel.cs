@@ -16,13 +16,19 @@ namespace WildMath
 {
   public class Pixel
   {
-    public Pixel(int x, int y)
-    {
-      this.x = x;
-      this.y = y;
-    }
+		public Pixel(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+		}
 
-    public int X { get { return x; } }
+		public Pixel(Pixel other)
+		{
+			x = other.x;
+			y = other.y;
+		}
+
+		public int X { get { return x; } }
     public int Y { get { return y; } }
 
     public Pixel Transpose()
