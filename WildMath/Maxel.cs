@@ -49,10 +49,21 @@ namespace WildMath
         SubtractElement(elem);
     }
 
-    ///<summary>
-    /// The number of unique pixels in the Maxel
-    ///</summary>
-    public int Count { get { return elements.Count; } }
+		///<summary>
+		/// Creates a Maxel with the same elements as the Maxel 'other'
+		///</summary>
+		public Maxel(Maxel other)
+		{
+			elements = new Dictionary<Pixel, int>(other.elements.Count);
+
+			foreach(KeyValuePair<Pixel, int> elem in other.elements)
+				AddElement(elem.Key, elem.Value);
+		}
+
+		///<summary>
+		/// The number of unique pixels in the Maxel
+		///</summary>
+		public int Count { get { return elements.Count; } }
 
     ///<summary>
     /// The magnitude of the Maxel (can be negative or zero)
