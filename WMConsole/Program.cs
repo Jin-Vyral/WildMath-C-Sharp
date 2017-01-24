@@ -76,8 +76,7 @@ namespace WMConsole
           Vexel t = Vexel.Zero;
           Vexel u = Vexel.Zero;
 
-          if((!s.IsSupport)
-          ||(Vexel.Cross(r, r).Support != Vexel.Cross(s, s)))
+          if(!s.IsSupport)
           {
             VexelFail(r, s, t, u);
             break;
@@ -106,7 +105,8 @@ namespace WMConsole
           ||(r + ((s * t) / (s + t)) != ((r + s) * (r + t)) / ((r + s) + (r + t)))
           ||(r + (s - t) != (r + s) - (r + t))
           ||(r + s + t != r * s * t / (r - s) / (r - t) / (s - t) * (r - s - t))
-          ||((r * s) >> 1 != (r >> 1) * (s >> 1)))
+          ||((r * s) >> 1 != (r >> 1) * (s >> 1))
+					|| (Vexel.Cross(r, s).Support != Vexel.Cross(r.Support, s.Support)))
           {
             VexelFail(r, s, t, u);
             break;
