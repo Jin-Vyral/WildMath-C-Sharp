@@ -43,6 +43,7 @@
     <Compile Include="Maxel.cs" />
     <Compile Include="Mset.cs" />
     <Compile Include="Pixel.cs" />
+    <Compile Include="Projector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vexel.cs" />
   </ItemGroup>
