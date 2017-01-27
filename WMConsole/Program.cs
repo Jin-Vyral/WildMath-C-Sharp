@@ -56,6 +56,12 @@ namespace WMConsole
 			// 2^2 * 3^2 * 3 / 2^2 = 3^3
 			double val3 = PrimeProjector.Project(pq);
 
+			// we can also project the objects into rationals (as a Pixel, X/Y)
+			Pixel rat = PrimeProjector.ProjectRational(q);
+
+			// finally, we can print the objects in a recognizable format
+			string str = PrimeProjector.ToString(q);
+
 			// run the testing loop
 			while(true)
       {
