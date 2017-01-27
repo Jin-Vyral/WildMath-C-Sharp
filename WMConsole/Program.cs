@@ -39,30 +39,22 @@ namespace WMConsole
 			p.AddElement(2, 2); // 2^2
 			p.AddElement(3, 2); // 3^2
 
-			PrimeProjector pp = new PrimeProjector();
-
-			pp.ProjectVexel(p);
-
 			// 2^2 * 3^2
-			double val = pp.screen;
+			double val = PrimeProjector.Project(p);
 
 			// the prime-factored objects can also represent rationals
 			Vexel q = new Vexel();
 			q.AddElement(2, -2); // 2^(-2)
 			q.AddElement(3, 1);  // 3^1
 
-			pp.ProjectVexel(q);
-
 			// 3 / 2^2
-			double val2 = pp.screen;
+			double val2 = PrimeProjector.Project(q);
 
 			// like any Vexel, we can do math with the prime-factored objects too
 			Vexel pq = p * q;
 
-			pp.ProjectVexel(pq);
-
 			// 2^2 * 3^2 * 3 / 2^2 = 3^3
-			double val3 = pp.screen;
+			double val3 = PrimeProjector.Project(pq);
 
 			// run the testing loop
 			while(true)
