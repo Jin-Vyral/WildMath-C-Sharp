@@ -46,7 +46,7 @@ namespace WMConsole
 			// 2^2 * 3^2
 			double val = pp.screen;
 
-			// the prime-fectored objects can also represent rationals
+			// the prime-factored objects can also represent rationals
 			Vexel q = new Vexel();
 			q.AddElement(2, -2); // 2^(-2)
 			q.AddElement(3, 1);  // 3^1
