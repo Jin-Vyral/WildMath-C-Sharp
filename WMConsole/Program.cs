@@ -32,7 +32,40 @@ namespace WMConsole
 
       int testsRun = 0;
 
-      while(true)
+			// demonstrates how Vexels can be used as prime-factored objects
+			// and how to use a projector to translate them into floating-point
+			Vexel p = new Vexel();
+
+			p.AddElement(2, 2); // 2^2
+			p.AddElement(3, 2); // 3^2
+
+			PrimeProjector pp = new PrimeProjector();
+
+			pp.ProjectVexel(p);
+
+			// 2^2 * 3^2
+			double val = pp.screen;
+
+			// the prime-fectored objects can also represent rationals
+			Vexel q = new Vexel();
+			q.AddElement(2, -2); // 2^(-2)
+			q.AddElement(3, 1);  // 3^1
+
+			pp.ProjectVexel(q);
+
+			// 3 / 2^2
+			double val2 = pp.screen;
+
+			// like any Vexel, we can do math with the prime-factored objects too
+			Vexel pq = p * q;
+
+			pp.ProjectVexel(pq);
+
+			// 2^2 * 3^2 * 3 / 2^2 = 3^3
+			double val3 = pp.screen;
+
+			// run the testing loop
+			while(true)
       {
         while(true)
         {
